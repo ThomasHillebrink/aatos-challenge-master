@@ -1,6 +1,6 @@
 import "./Weather.css";
 import React, { useEffect } from "react";
-import { Typography } from "antd";
+import { Typography, Row, Col } from "antd";
 
 interface WeatherData {
   icon: string;
@@ -20,12 +20,16 @@ const WeatherDataSection: React.FunctionComponent<WeatherDataSectionProps> = (
 
   return (
     <div>
-      <img src={iconUrl} className="Weather-logo" alt="logo" />
+      <Row>
+        <Col span={12}>
+        <img src={iconUrl} className="Weather-logo" alt="logo" />
+        </Col>
       
-      <div>
-      <Typography.Title level={2}>{weatherData.main}</Typography.Title>
-      <Typography.Text>{weatherData.description}</Typography.Text>
-      </div>
+        <Col span={12}>
+        <Typography.Title level={2}>{weatherData.main}</Typography.Title>
+        <Typography.Text>{weatherData.description}</Typography.Text>
+        </Col>
+      </Row>
     </div>
   );
 };
