@@ -20,8 +20,11 @@ const WeatherDataSection: React.FunctionComponent<WeatherDataSectionProps> = (
   return (
     <div>
       <img src={iconUrl} className="Weather-logo" alt="logo" />
+      
+      <div>
       <Typography.Title level={2}>{weatherData.main}</Typography.Title>
       <Typography.Text>{weatherData.description}</Typography.Text>
+      </div>
     </div>
   );
 };
@@ -73,8 +76,10 @@ const Weather: React.FunctionComponent = () => {
     return <p>No data</p>;
   }
   return (
+    <div>
     <Typography.Title>Current Weather</Typography.Title>
     <WeatherDataSection weatherData={weatherData} />
+    </div>
   );
 };
 

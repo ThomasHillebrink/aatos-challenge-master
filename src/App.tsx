@@ -11,3 +11,5 @@ const App: React.FunctionComponent = () => {
     </div>
   );
 };
+
+export default App
