@@ -1,5 +1,5 @@
 import "./Weather.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography } from "antd";
 
 interface WeatherData {
@@ -11,6 +11,7 @@ interface WeatherData {
 interface WeatherDataSectionProps {
   weatherData: WeatherData;
 }
+
 const WeatherDataSection: React.FunctionComponent<WeatherDataSectionProps> = (
   props
 ) => {
@@ -69,8 +70,12 @@ const getWeatherFromApi = async (): Promise<WeatherData> => {
 };
 
 const Weather: React.FunctionComponent = () => {
-  const [weatherData] = React.useState<WeatherData | undefined>(undefined);
 
+  useEffect(() => {
+    getWeatherFromApi()
+  })
+  
+  const [weatherData] = React.useState<WeatherData | undefined>(undefined);
 
   if (!weatherData) {
     return <p>No data</p>;
