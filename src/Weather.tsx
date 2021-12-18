@@ -65,17 +65,23 @@ const getWeatherFromApi = async (): Promise<WeatherData> => {
     `http://api.openweathermap.org/data/2.5/weather?q=Helsinki&appid=${process.env.REACT_APP_API_KEY}`
   );
   const data = await response.json();
-  const weather = data.weather[0];
+  const weather = data.weather[0]; 
   return weather;
 };
 
 const Weather: React.FunctionComponent = () => {
 
-  useEffect(() => {
-    getWeatherFromApi()
-  })
+  const [weatherData, setWeatherData] = React.useState<WeatherData | undefined>(undefined);
   
-  const [weatherData] = React.useState<WeatherData | undefined>(undefined);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getWeatherFromApi();
+      setWeatherData(response)
+      // ...
+    }
+    fetchData();
+  }, []); 
+
 
   if (!weatherData) {
     return <p>No data</p>;
